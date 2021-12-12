@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter_catlog/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   final int days = 30;
@@ -11,11 +14,9 @@ class HomePage extends StatelessWidget {
         title: Text("Catalog App"),
       ),
       body: Center(
-        child: Container(
-          child: Text("welcome to $days days of flutter with $name"),
-        ),
+        child: Text("welcome to $days days of flutter with $name"),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
     );
   }
 }

@@ -17,7 +17,7 @@ class MyDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              //day 11 pe ham ny 3 Tree cover kiya hai.
+              //day 11 pe we learn about contrains and context.
               // context location aik element hai or wo hamaray har widget ki location decide karta hai.
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(

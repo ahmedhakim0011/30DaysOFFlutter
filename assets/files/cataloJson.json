@@ -1,0 +1,52 @@
+{
+    "products": [{
+            "id": 1,
+            "name": "iphone 12 pro",
+            "desc": "Apple Iphone 12th Generation",
+            "price": 99,
+            "color": "#33505a",
+            "image": "https://www.citypng.com/public/uploads/preview/-21602650665zke0avknni.png"
+        },
+        {
+            "id": 2,
+            "name": "Pixel 5",
+            "desc": "Google Pixel phone 5th Generation",
+            "price": 699,
+            "color": "#00AC51",
+            "image": "https://pricespakistan.pk/wp-content/uploads/2020/11/Google-Pixel-5.png"
+        },
+        {
+            "id": 3,
+            "name": "M1 Macbook Air",
+            "desc": "Apple Macbook Aikson with aple silicon",
+            "price": 800,
+            "color": "#33505a",
+            "image": "http://cdn.shopify.com/s/files/1/1684/4603/products/MacBookAir13m12020_Gold_1200x1200.png?v=1620371483"
+        },
+        {
+            "id": 4,
+            "name": "Playstation 5",
+            "desc": "Sony Playstation 5th generation",
+            "price": 800,
+            "color": "#544ee4",
+            "image": "https://www.pinkvilla.com/files/ps5_0.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Apple Air Pods Pro 1st Generation",
+            "desc": "Sony Playstation 5th generation",
+            "price": 200,
+            "color": "#e3e5e9",
+            "image": "https://i.pinimg.com/originals/9d/9d/d7/9d9dd7ca33229cd8f1df4ec6cd4b8a4a.png"
+        },
+        {
+            "id": 6,
+            "name": "ipad Pro",
+            "desc": "Apple Ipad Pro 1st Generetion",
+            "price": 799,
+            "color": "#f73984",
+            "image": "https://www.pngfind.com/pngs/m/145-1454027_ipad-pro-11-inch-ipad-pro-12-9-3rd.png"
+        }
+
+    ]
+}

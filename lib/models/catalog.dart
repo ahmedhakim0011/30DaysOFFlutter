@@ -1,16 +1,7 @@
-// ignore_for_file: non_constant_identifier_names
+// @dart=2.9
+// ignore_for_file: non_constant_identifier_names, empty_constructor_bodies
 class CatalogMaodel {
-  static final items = [
-    Item(
-      Id: 1,
-      name: "iphone 12 pro",
-      desc: "Apple Iphone 12th generation",
-      price: 999,
-      color: "#33505a",
-      imgURL:
-          "https://myshop.pk/pub/media/catalog/product/cache/26f8091d81cea4b38d820a1d1a4f62be/a/p/apple_i_phone_12_pro-_myshop-pk-__4_1_1_1.jpg",
-    ),
-  ];
+  static List<Item> items;
 }
 
 class Item {
@@ -19,13 +10,27 @@ class Item {
   final String desc;
   final num price;
   final String color;
-  final String imgURL;
+  final String image;
 
-  Item(
-      {required this.Id,
-      required this.name,
-      required this.desc,
-      required this.price,
-      required this.color,
-      required this.imgURL});
+  Item({this.Id, this.name, this.desc, this.price, this.color, this.image});
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      Id: map["Id"],
+      name: map["name"],
+      desc: map["desc"],
+      price: map["price"],
+      color: map["color"],
+      image: map["image"],
+    );
+  }
+
+  toMAp() => {
+        "id": Id,
+        "name": name,
+        "desc": Id,
+        "price": price,
+        "color": color,
+        "image": image,
+      };
 }

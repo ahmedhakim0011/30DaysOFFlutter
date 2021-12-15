@@ -1,3 +1,5 @@
+// @dart=2.9
+
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_import
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/pages/home_page.dart';

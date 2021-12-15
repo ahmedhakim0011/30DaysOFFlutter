@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,10 +17,9 @@ class _HomePageState extends State<HomePage> {
 
   final String name = "Codepure";
 
-  final dummyList = List.generate(20, (index) => CatalogMaodel.items[0]);
-
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     loadData();
@@ -34,24 +33,30 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: dummyList.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(
-              item: dummyList[index],
-            );
-          },
-        ),
+        child: (CatalogMaodel.items != null && CatalogMaodel.items.isNotEmpty)
+            ? ListView.builder(
+                itemCount: CatalogMaodel.items.length,
+                itemBuilder: (context, index) => ItemWidget(
+                  item: CatalogMaodel.items[index],
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: MyDrawer(),
     );
   }
 
   void loadData() async {
+    await Future.delayed(Duration(seconds: 2));
     final catalogJson =
         await rootBundle.loadString("assets/files/cataloJson.json");
     final decodeData = jsonDecode(catalogJson);
     var productsData = decodeData["products"];
-    print(productsData);
+    CatalogMaodel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+    setState(() {});
   }
 }

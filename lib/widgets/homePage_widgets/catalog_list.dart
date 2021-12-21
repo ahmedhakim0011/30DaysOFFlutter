@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, import_of_legacy_library_into_null_safe
+
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/catalog.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
@@ -61,7 +63,7 @@ class CatalogItem extends StatelessWidget {
                       StadiumBorder(),
                     ),
                   ),
-                  child: "Buy".text.bold.xl.make(),
+                  child: "Add to Cart".text.bold.xl.make(),
                 )
               ],
             ).pOnly(right: 8.0),

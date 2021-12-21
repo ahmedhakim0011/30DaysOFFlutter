@@ -1,3 +1,6 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe, unnecessary_import, prefer_const_constructors
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/catalog.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
@@ -29,12 +32,14 @@ class HomeDetailsPage extends StatelessWidget {
                   StadiumBorder(),
                 ),
               ),
-              child: "Buy".text.bold.xl.make(),
-            ).wh(100, 50),
+              child: "Add to cart".text.bold.xl.make(),
+            ).wh(140, 50),
           ],
         ).p32(),
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: Mytheme.creamColor,
       body: SafeArea(
           bottom: false,
@@ -63,6 +68,12 @@ class HomeDetailsPage extends StatelessWidget {
                           .textStyle(context.captionStyle!)
                           .xl
                           .make(),
+                      10.heightBox,
+                      "Eirmod sit lorem et at dolor lorem invidunt tempor nonumy dolores. Eirmod nonumy stet aliquyam lorem invidunt. Sea sanctus amet ea ut, justo labore accusam amet rebum kasd et sed nonumy vero. Dolor consetetur vero lorem gubergren stet stet et erat voluptua, sadipscing sed stet lorem eos diam. Sea elitr."
+                          .text
+                          .textStyle(context.captionStyle!)
+                          .make()
+                          .p16(),
                     ],
                   ).p64(),
                 ),

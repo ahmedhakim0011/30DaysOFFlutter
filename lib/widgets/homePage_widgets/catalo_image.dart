@@ -1,7 +1,6 @@
-// ignore_for_file: implementation_imports
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
+import 'package:velocity_x/src/extensions/context_ext.dart';
 import 'package:velocity_x/src/flutter/container.dart';
 import 'package:velocity_x/src/flutter/padding.dart';
 import 'package:velocity_x/src/flutter/sizedbox.dart';
@@ -15,6 +14,6 @@ class ProductImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       image!,
-    ).box.p8.rounded.color(Mytheme.creamColor).make().p16().w40(context);
+    ).box.p8.rounded.color(context.canvasColor).make().p16().w40(context);
   }
 }

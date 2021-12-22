@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, import_of_legacy_library_into_null_safe
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, import_of_legacy_library_into_null_safe, deprecated_member_use
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:flutter_catlog/models/catalog.dart';
 import 'package:flutter_catlog/pages/home_details_page.dart';
+import 'package:flutter_catlog/utils/routes.dart';
 import 'package:flutter_catlog/widgets/homePage_widgets/catalog_header.dart';
 import 'package:flutter_catlog/widgets/homePage_widgets/catalog_list.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
@@ -32,7 +34,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Mytheme.creamColor,
+        floatingActionButton: FloatingActionButton(
+          heroTag: "next1",
+          onPressed: () {
+            Navigator.pushNamed(context, MyRoutes.cartPageRoute);
+          },
+          backgroundColor: context.theme.buttonColor,
+          child: Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: context.canvasColor,
         body: SafeArea(
           child: Container(
             padding: Vx.m32,

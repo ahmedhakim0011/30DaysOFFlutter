@@ -17,7 +17,7 @@ class HomeDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           buttonPadding: EdgeInsets.zero,
           alignment: MainAxisAlignment.spaceBetween,
@@ -27,20 +27,20 @@ class HomeDetailsPage extends StatelessWidget {
               onPressed: () {},
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(Mytheme.darkBluishColor),
+                    MaterialStateProperty.all(context.theme.buttonColor),
                 shape: MaterialStateProperty.all(
                   StadiumBorder(),
                 ),
               ),
               child: "Add to cart".text.bold.xl.make(),
-            ).wh(140, 50),
+            ).wh(130, 50),
           ],
         ).p32(),
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: Mytheme.creamColor,
+      backgroundColor: context.canvasColor,
       body: SafeArea(
           bottom: false,
           child: Column(
@@ -58,20 +58,22 @@ class HomeDetailsPage extends StatelessWidget {
                 edge: VxEdge.TOP,
                 child: Container(
                   width: context.screenWidth,
-                  color: Colors.white,
+                  color: context.cardColor,
                   child: Column(
                     children: [
                       catalog!.name.text.bold.xl4
-                          .color(Mytheme.darkBluishColor)
+                          .color(context.accentColor)
                           .make(),
                       catalog!.desc.text
                           .textStyle(context.captionStyle!)
+                          .color(context.accentColor)
                           .xl
                           .make(),
                       10.heightBox,
                       "Eirmod sit lorem et at dolor lorem invidunt tempor nonumy dolores. Eirmod nonumy stet aliquyam lorem invidunt. Sea sanctus amet ea ut, justo labore accusam amet rebum kasd et sed nonumy vero. Dolor consetetur vero lorem gubergren stet stet et erat voluptua, sadipscing sed stet lorem eos diam. Sea elitr."
                           .text
                           .textStyle(context.captionStyle!)
+                          .color(context.accentColor)
                           .make()
                           .p16(),
                     ],

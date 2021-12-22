@@ -4,10 +4,10 @@ class CatalogMaodel {
   static List<Item> items;
 
 //Get Item by id
-  static Item getByID(int id) =>
+  Item getByID(int id) =>
       items.firstWhere((element) => element.Id == id, orElse: null);
 
-  static Item getByPosition(int pos) => items[pos];
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {

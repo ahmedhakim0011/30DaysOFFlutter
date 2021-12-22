@@ -36,7 +36,7 @@ class Mytheme {
             color: Colors.white,
           ),
           titleTextStyle:
-              TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       );
 

@@ -1,42 +1,79 @@
 // @dart=2.9
-// ignore_for_file: non_constant_identifier_names, empty_constructor_bodies
-class CatalogMaodel {
+// ignore_for_file: null_closures
+
+class CatalogModel {
+  static final catModel = CatalogModel._internal();
+
+  CatalogModel._internal();
+
+  factory CatalogModel() => catModel;
+
   static List<Item> items;
 
-//Get Item by id
-  Item getByID(int id) =>
-      items.firstWhere((element) => element.Id == id, orElse: null);
+  // Get Item by ID
+  Item getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
 
+  // Get Item by position
   Item getByPosition(int pos) => items[pos];
 }
 
 class Item {
-  final int Id;
+  final int id;
   final String name;
   final String desc;
   final num price;
   final String color;
   final String image;
 
-  Item({this.Id, this.name, this.desc, this.price, this.color, this.image});
+  Item({
+    this.id,
+    this.name,
+    this.desc,
+    this.price,
+    this.color,
+    this.image,
+  });
 
-  factory Item.fromMap(Map<String, dynamic> map) {
+  Item copyWith({
+    int id,
+    String name,
+    String desc,
+    num price,
+    String color,
+    String image,
+  }) {
     return Item(
-      Id: map["Id"],
-      name: map["name"],
-      desc: map["desc"],
-      price: map["price"],
-      color: map["color"],
-      image: map["image"],
+      id: id ?? this.id,
+      name: name ?? this.name,
+      desc: desc ?? this.desc,
+      price: price ?? this.price,
+      color: color ?? this.color,
+      image: image ?? this.image,
     );
   }
 
-  toMAp() => {
-        "id": Id,
-        "name": name,
-        "desc": Id,
-        "price": price,
-        "color": color,
-        "image": image,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'desc': desc,
+      'price': price,
+      'color': color,
+      'image': image,
+    };
+  }
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return Item(
+      id: map['id'],
+      name: map['name'],
+      desc: map['desc'],
+      price: map['price'],
+      color: map['color'],
+      image: map['image'],
+    );
+  }
 }

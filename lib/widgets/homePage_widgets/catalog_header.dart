@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports, unused_import, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
 import 'package:velocity_x/src/extensions/context_ext.dart';

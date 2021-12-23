@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, implementation_imports
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_catlog/widgets/themes.dart';
 import 'package:velocity_x/src/extensions/context_ext.dart';

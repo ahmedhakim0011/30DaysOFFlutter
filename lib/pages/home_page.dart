@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, import_of_legacy_library_into_null_safe, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, import_of_legacy_library_into_null_safe, deprecated_member_use, duplicate_import, unused_import
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,39 +13,53 @@ import 'package:flutter_catlog/widgets/themes.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
+
+import 'package:velocity_x/velocity_x.dart';
+
 class HomePage extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final int days = 30;
 
-  final String name = "Codepure";
+  final String name = "Codepur";
 
   @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
     super.initState();
     loadData();
+  }
+
+  loadData() async {
+    await Future.delayed(Duration(seconds: 2));
+    final catalogJson =
+        await rootBundle.loadString("assets/files/cataloJson.json");
+    final decodedData = jsonDecode(catalogJson);
+    var productsData = decodedData["products"];
+    CatalogModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: context.canvasColor,
         floatingActionButton: FloatingActionButton(
-          heroTag: "next1",
-          onPressed: () {
-            Navigator.pushNamed(context, MyRoutes.cartPageRoute);
-          },
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartPageRoute),
           backgroundColor: context.theme.buttonColor,
           child: Icon(
             CupertinoIcons.cart,
             color: Colors.white,
           ),
         ),
-        backgroundColor: context.canvasColor,
         body: SafeArea(
           child: Container(
             padding: Vx.m32,
@@ -53,27 +67,14 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CatalogHeader(),
-                if (CatalogMaodel.items != null &&
-                    CatalogMaodel.items.isNotEmpty)
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                   CatalogList().py16().expand()
                 else
-                  CircularProgressIndicator().centered().expand()
+                  CircularProgressIndicator().centered().expand(),
               ],
             ),
           ),
         ));
-  }
-
-  void loadData() async {
-    await Future.delayed(Duration(seconds: 2));
-    final catalogJson =
-        await rootBundle.loadString("assets/files/cataloJson.json");
-    final decodeData = jsonDecode(catalogJson);
-    var productsData = decodeData["products"];
-    CatalogMaodel.items = List.from(productsData)
-        .map<Item>((item) => Item.fromMap(item))
-        .toList();
-    setState(() {});
   }
 }
 
@@ -84,14 +85,14 @@ class CatalogList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: CatalogMaodel.items.length,
+      itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
-        final catalog = CatalogMaodel.items[index];
+        final catalog = CatalogModel.items[index];
         return InkWell(
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeDetailsPage(catalog: catalog),
+                    builder: (context) => HomeDetailPage(catalog: catalog),
                   ),
                 ),
             child: CatalogItem(catalog: catalog));

@@ -1,37 +1,44 @@
-import 'package:flutter_catlog/models/catalog.dart';
+// @dart=2.9
 
-//add to cart whole functional model //
+import 'catalog.dart';
 
 class CartModel {
-  //catalog field
+  static final cartModel = CartModel._internal();
 
-  CatalogMaodel? _catalog;
+  CartModel._internal();
 
-  //collection of IDS -store ids of each Item
+  factory CartModel() => cartModel;
 
+  // catalog field
+  CatalogModel _catalog;
+
+  // Collection of IDs - store Ids of each item
   final List<int> _itemIds = [];
 
-  CatalogMaodel? get catalog => _catalog;
+  // Get Catalog
+  CatalogModel get catalog => _catalog;
 
-  set catalog(CatalogMaodel? newCatalog) {
+  set catalog(CatalogModel newCatalog) {
     assert(newCatalog != null);
     _catalog = newCatalog;
   }
 
-  //getting item in cart
-  List<Item> get item => _itemIds.map((id) => _catalog!.getByID(id)).toList();
+  // Get items in the cart
+  List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
 
-//get total price
+  // Get total price
   num get totalPrice =>
-      item.fold(0, (previousValue, element) => previousValue + element.price);
+      items.fold(0, (total, current) => total + current.price);
 
-  //add item
+  // Add Item
+
   void add(Item item) {
-    _itemIds.add(item.Id);
+    _itemIds.add(item.id);
   }
-  //remove item
+
+  // Remove Item
 
   void remove(Item item) {
-    _itemIds.remove(item.Id);
+    _itemIds.remove(item.id);
   }
 }

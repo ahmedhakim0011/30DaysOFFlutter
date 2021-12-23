@@ -1,87 +1,82 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, unnecessary_import, prefer_const_constructors
+// @dart=2.9
 
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: import_of_legacy_library_into_null_safe, unnecessary_import, prefer_const_constructors, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/catalog.dart';
-import 'package:flutter_catlog/widgets/themes.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
-class HomeDetailsPage extends StatelessWidget {
-  final Item? catalog;
+class HomeDetailPage extends StatelessWidget {
+  final Item catalog;
 
-  const HomeDetailsPage({Key? key, @required this.catalog})
+  const HomeDetailPage({Key key, @required this.catalog})
       : assert(catalog != null),
         super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
         color: context.cardColor,
         child: ButtonBar(
-          buttonPadding: EdgeInsets.zero,
           alignment: MainAxisAlignment.spaceBetween,
+          buttonPadding: EdgeInsets.zero,
           children: [
-            "\$${catalog!.price}".text.bold.red800.xl4.make(),
+            "\$${catalog.price}".text.bold.xl4.red800.make(),
             ElevatedButton(
               onPressed: () {},
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(context.theme.buttonColor),
-                shape: MaterialStateProperty.all(
-                  StadiumBorder(),
-                ),
-              ),
-              child: "Add to cart".text.bold.xl.make(),
-            ).wh(130, 50),
+                  backgroundColor:
+                      MaterialStateProperty.all(context.theme.buttonColor),
+                  shape: MaterialStateProperty.all(StadiumBorder())),
+              child: "Add to cart".text.make(),
+            ).wh(120, 50)
           ],
         ).p32(),
       ),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
-      backgroundColor: context.canvasColor,
       body: SafeArea(
-          bottom: false,
-          child: Column(
-            children: [
-              Hero(
-                tag: Key(catalog!.Id.toString()),
-                child: Image.network(
-                  catalog!.image,
-                ),
-              ).h32(context),
-              Expanded(
-                  child: VxArc(
-                height: 30.0,
-                arcType: VxArcType.CONVEY,
-                edge: VxEdge.TOP,
-                child: Container(
-                  width: context.screenWidth,
-                  color: context.cardColor,
+        bottom: false,
+        child: Column(
+          children: [
+            Hero(
+              tag: Key(catalog.id.toString()),
+              child: Image.network(catalog.image),
+            ).h32(context),
+            Expanded(
+                child: VxArc(
+              height: 30.0,
+              arcType: VxArcType.CONVEY,
+              edge: VxEdge.TOP,
+              child: Container(
+                color: context.cardColor,
+                width: context.screenWidth,
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      catalog!.name.text.bold.xl4
+                      catalog.name.text.xl4
                           .color(context.accentColor)
+                          .bold
                           .make(),
-                      catalog!.desc.text
-                          .textStyle(context.captionStyle!)
-                          .color(context.accentColor)
+                      catalog.desc.text
+                          .textStyle(context.captionStyle)
                           .xl
                           .make(),
                       10.heightBox,
-                      "Eirmod sit lorem et at dolor lorem invidunt tempor nonumy dolores. Eirmod nonumy stet aliquyam lorem invidunt. Sea sanctus amet ea ut, justo labore accusam amet rebum kasd et sed nonumy vero. Dolor consetetur vero lorem gubergren stet stet et erat voluptua, sadipscing sed stet lorem eos diam. Sea elitr."
+                      "Dolor sea takimata ipsum sea eirmod aliquyam est. Eos ipsum voluptua eirmod elitr, no dolor dolor amet eirmod dolor labore dolores magna. Amet vero vero vero kasd, dolore sea sed sit invidunt nonumy est sit clita. Diam aliquyam amet tempor diam no aliquyam invidunt. Elitr lorem eirmod dolore clita. Rebum."
                           .text
-                          .textStyle(context.captionStyle!)
-                          .color(context.accentColor)
+                          .textStyle(context.captionStyle)
                           .make()
-                          .p16(),
+                          .p16()
                     ],
-                  ).p64(),
+                  ).py64(),
                 ),
-              ))
-            ],
-          )),
+              ),
+            ))
+          ],
+        ),
+      ),
     );
   }
 }

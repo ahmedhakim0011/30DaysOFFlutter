@@ -1,7 +1,7 @@
 // @dart=2.9
 
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, deprecated_member_use
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_catlog/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -67,16 +67,26 @@ class __CartListState extends State<_CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _cart.items?.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-          icon: Icon(Icons.remove_circle_outline),
-          onPressed: () {},
-        ),
-        title: _cart.items[index].name.text.make(),
-      ),
-    );
+    return _cart.items.isEmpty
+        ? "No Items in cart."
+            .text
+            .xl
+            .color(context.accentColor)
+            .make()
+            .centered()
+        : ListView.builder(
+            itemCount: _cart.items?.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done_outline),
+              trailing: IconButton(
+                icon: Icon(Icons.remove_shopping_cart_outlined),
+                onPressed: () {
+                  _cart.remove(_cart.items[index]);
+                  setState(() {});
+                },
+              ),
+              title: _cart.items[index].name.text.make(),
+            ),
+          );
   }
 }

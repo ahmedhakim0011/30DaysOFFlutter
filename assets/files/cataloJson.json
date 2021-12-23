@@ -1,7 +1,7 @@
 {
     "products": [{
             "id": 1,
-            "name": "iphone 12 pro",
+            "name": "Iphone 12 pro",
             "desc": "Apple Iphone 12th Generation",
             "price": 99,
             "color": "#33505a",
@@ -41,7 +41,7 @@
         },
         {
             "id": 6,
-            "name": "ipad Pro",
+            "name": "Ipad Pro",
             "desc": "Apple Ipad Pro 1st Generetion",
             "price": 799,
             "color": "#f73984",
